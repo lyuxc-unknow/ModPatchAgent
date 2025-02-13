@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.lyuxc'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar{
+    manifest {
+        attributes([
+                "Specification-Title"       : "ModPatcherAgent",
+                "Specification-Vendor"      : "lyuxc",
+                "Premain-Class"             : "me.lyuxc.agent.ModPatcherAgent",
+                "Agent-Class"               : "me.lyuxc.agent.ModPatcherAgent",
+                "Can-Redefine-Classes"      : "true",
+                "Can-Retransform-Classes"   : "true"
+        ])
+    }
+}
